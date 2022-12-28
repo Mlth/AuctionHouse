@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package AuctionHouse;
+option go_package = "https://github.com/Mlth/AuctionHouse;AuctionHouse";
+
+service AuctionHouse {
+    rpc ReceiveBid (BidMessage) returns (AckMessage) {}
+    rpc ReturnResult (ReqMessage) returns (OutcomeMessage) {}
+}
+
+message BidMessage {
+    int32 clientId = 1;
+    int32 amount = 2;
+    string clientName = 3;
+}
+
+message AckMessage {
+    bool bidPlaced = 1;
+    bool auctionOver = 2;
+}
+
+message ReqMessage {
+
+}
+
+message OutcomeMessage {
+    int32 clientId = 1;
+    string clientName = 2;
+    int32 highestBid = 3;
+    bool auctionOver = 4;
+}
